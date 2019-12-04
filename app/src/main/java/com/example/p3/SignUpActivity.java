@@ -23,7 +23,7 @@ public class SignUpActivity extends AppCompatActivity {
     private TextView tvSignIn;
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
-
+//
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
