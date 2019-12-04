@@ -57,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(i);
                 }
                 else{
-                    Toast.makeText(LoginActivity.this, "Please Login",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Please Login",Toast.LENGTH_SHORT);
                 }
             }
         };
@@ -90,10 +90,10 @@ public class LoginActivity extends AppCompatActivity {
                                 Toast.makeText(LoginActivity.this, "Login error",Toast.LENGTH_SHORT).show();
 
                             }
-                            else {}
+                            else {
                             Intent intToHome = new Intent(LoginActivity.this, HomeActivity.class);
                             startActivity(intToHome);
-                        }
+                        }}
                     });
                 }
                 else {
@@ -110,6 +110,9 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intRegister);
             }
         });
+
+
     }
+
 
 }

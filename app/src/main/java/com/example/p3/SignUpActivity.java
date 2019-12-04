@@ -14,12 +14,16 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUpActivity extends AppCompatActivity {
     private EditText mEmail, mPassword, mName;
     private Button mSignUp;
     private TextView tvSignIn;
     private FirebaseAuth mAuth;
+    private DatabaseReference mDatabase;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +37,7 @@ public class SignUpActivity extends AppCompatActivity {
         mPassword = findViewById(R.id.password_edittext_signup);
         tvSignIn = findViewById(R.id.already_have_account_textview);
         mSignUp = findViewById(R.id.signup_button);
+        mDatabase = FirebaseDatabase.getInstance().getReference();
         register();
     }
 
@@ -58,12 +63,14 @@ public class SignUpActivity extends AppCompatActivity {
                     mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (!task.isSuccessful()) {
-                                Toast.makeText(SignUpActivity.this, "Sign up error", Toast.LENGTH_SHORT);
+                            if (task.isSuccessful()) {
+                            writeNewUser(mAuth.getUid(),mName.getText().toString(),mEmail.getText().toString());
+                            startActivity(new Intent(SignUpActivity.this, HomeActivity.class));
 
                             } else {
+
+                                Toast.makeText(SignUpActivity.this, "Sign up error", Toast.LENGTH_SHORT);
                             }
-                            startActivity(new Intent(SignUpActivity.this, HomeActivity.class));
                         }
                     });
                 } else {
@@ -81,5 +88,11 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    private void writeNewUser(String userId, String name, String email) {
+        UserProfile user = new UserProfile(name, email);
+
+        mDatabase.child("users").child(userId).setValue(user);
     }
 }

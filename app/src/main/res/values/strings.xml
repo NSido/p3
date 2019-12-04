@@ -13,4 +13,8 @@
     <string name="insights">Insights</string>
     <string name="Facts">Facts</string>
     <string name="Profile">Profile</string>
+    <string name="sign_out">SIGN-OUT</string>
+    <string name="settings">SETTINGS</string>
+    <string name="measure">MEASURE</string>
+    <string name="more">MORE</string>
 </resources>

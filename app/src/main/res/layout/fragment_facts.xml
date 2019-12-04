@@ -15,4 +15,21 @@
         android:textAlignment="center"
         android:textSize="50sp"/>
 
+    <include
+        android:id="@+id/include"
+        layout="@layout/app_bar" />
+
+    <TextView
+        android:id="@+id/more_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/more"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/include"
+        app:layout_constraintEnd_toEndOf="@+id/include"
+        app:layout_constraintStart_toStartOf="@+id/include"
+        app:layout_constraintTop_toTopOf="@+id/include" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
